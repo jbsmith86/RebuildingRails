@@ -18,6 +18,18 @@ class QuotesController < Rulers::Controller
     render :a_quote, :noun => :winking
   end
 
+  def update_quote
+    attrs = {
+       "id" => "1",
+       "submitter" => "Myself",
+       "quote" => "Intelligence is the ability to adapt to change.",
+       "attribution" => "Stephen Hawking"
+     }
+     FileModel.update attrs
+     quotes = FileModel.all
+     render :index, :quotes => quotes
+  end
+
   def quote_1
     quote_1 = FileModel.find(1)
     render :quote, :obj => quote_1
